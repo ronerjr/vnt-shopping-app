@@ -5,5 +5,5 @@
   </div>
 </form>
 <ul class="list-group mt-3">
-  <app-shopping-list-item [item]="item" *ngFor="let item of listItems" (changed)="itemChanged($event)" (click)="editItem(item)"></app-shopping-list-item>
+  <app-shopping-list-item [item]="item" *ngFor="let item of listItems | async" (changed)="itemChanged($event)" (click)="editItem(item)"></app-shopping-list-item>
 </ul>

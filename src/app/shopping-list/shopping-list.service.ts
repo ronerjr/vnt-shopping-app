@@ -1,30 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import { ShoppingListItem } from './shopping-list-item/shopping-list-item.model';
 
 @Injectable()
 export class ShoppingListService {
-  listItems: Array<any>;
+  listItems: Array<ShoppingListItem[]>;
 
-  constructor(private httpClient: HttpClient) { }
+  listItemFirebase: Observable<ShoppingListItem[]>;
+  listItemsRef: AngularFireList<ShoppingListItem[]>;
 
-  findAll() {
-    return this.httpClient.get(`${environment.firebase.databaseURL}/items.json`);
+  constructor(private httpClient: HttpClient, private db: AngularFireDatabase) {
+    this.listItems = new Array();
+    this.listItemsRef = this.db.list('items');
+    this.listItemFirebase = this.listItemsRef.snapshotChanges().map(
+        changes => changes.map(c => new ShoppingListItem({
+             key: c.payload.key,
+             name: c.payload.val()['name'],
+             disabled: c.payload.val()['disabled']})));
   }
 
   add(item) {
     delete item.key;
-    return this.httpClient.post(`${environment.firebase.databaseURL}/items.json`, item);
+    this.listItemsRef.push(item);
   }
 
   remove(item) {
-    return this.httpClient.delete(`${environment.firebase.databaseURL}/items/${item.key}.json`);
+    this.listItemsRef.remove(item.key);
   }
 
   edit(item) {
+    const key = item.key;
     delete item.key;
-    return this.httpClient.put(`${environment.firebase.databaseURL}/items/${item.key}.json`, item);
+    this.listItemsRef.update(key, item);
   }
 
 }

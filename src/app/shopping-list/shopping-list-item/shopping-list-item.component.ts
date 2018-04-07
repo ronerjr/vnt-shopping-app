@@ -16,15 +16,11 @@ export class ShoppingListItemComponent implements OnInit {
   }
 
   remove() {
-    this.myShoppingListService.remove(this.item).subscribe(res => {
-      this.changed.emit();
-    });
+    this.myShoppingListService.remove(this.item);
   }
 
   cross() {
     this.item.disabled = true;
-    this.myShoppingListService.edit(this.item).subscribe(res => {
-      this.changed.emit();
-    });
+    this.myShoppingListService.edit(this.item);
   }
 }

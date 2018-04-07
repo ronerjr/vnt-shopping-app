@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from './shopping-list.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,7 +8,7 @@ import { ShoppingListService } from './shopping-list.service';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  listItems: Object;
+  listItems: Observable<any[]>;
   myNewItem: any;
 
   constructor(private myShoppingListService: ShoppingListService) { }
@@ -19,13 +20,9 @@ export class ShoppingListComponent implements OnInit {
   save() {
     console.log(this.myNewItem);
     if (this.myNewItem.key) {
-      this.myShoppingListService.edit(this.myNewItem).subscribe(res => {
-        this.initialState();
-      });
+      this.myShoppingListService.edit(this.myNewItem);
     } else {
-      this.myShoppingListService.add(this.myNewItem).subscribe(res => {
-        this.initialState();
-      });
+      this.myShoppingListService.add(this.myNewItem);
     }
   }
 
@@ -34,12 +31,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   loadData() {
-    this.myShoppingListService.findAll().subscribe(response => {
-      this.listItems = Object.keys(response).map(id => {
-        response[id]['key'] = id;
-        return response[id];
-      }).reverse();
-    });
+    this.listItems = this.myShoppingListService.listItemFirebase;
   }
 
   initialState() {
