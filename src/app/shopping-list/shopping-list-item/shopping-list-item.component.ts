@@ -25,7 +25,7 @@ export class ShoppingListItemComponent implements OnInit {
     this.item.disabled = true;
     this.myShoppingListService.cross(this.item).subscribe(res => {
       this.changed.emit();
-    }
+    });
   }
 
 }
