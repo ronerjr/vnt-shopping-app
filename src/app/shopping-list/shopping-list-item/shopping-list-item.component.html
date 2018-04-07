@@ -1,8 +1,7 @@
-<li class="list-group-item" [ngClass]="{'disabled': item.disabled}">
+<li class="list-group-item mt-1" [ngClass]="{'disabled': item.disabled}">
   <span>{{item.name}}</span>
   <span class="float-right" *ngIf="!item.disabled">
-    <span class="badge badge-danger" (click)="remove()">X</span>
-    <span class="badge badge-success" (click)="cross()">&radic;</span>
-    <i class="fas fa-trash-alt"></i>
+    <span class="badge badge-danger p-2" (click)="remove()"><i class="fa fa-trash"></i></span>
+    <span class="badge badge-success p-2" (click)="cross()"><i class="fa fa-shopping-cart"></i></span>
   </span>
 </li>

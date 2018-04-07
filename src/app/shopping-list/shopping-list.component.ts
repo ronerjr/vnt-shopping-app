@@ -8,18 +8,21 @@ import { ShoppingListService } from './shopping-list.service';
 })
 export class ShoppingListComponent implements OnInit {
   listItems: Array<any>;
-  myNewItem = new Object({});
+  myNewItem: any;
 
   constructor(private myShoppingListService: ShoppingListService) { }
 
   ngOnInit() {
-    this.myNewItem = {name: '', disabled: false};
+    this.createDefaultItem();
     this.listItems = this.myShoppingListService.findAll();
   }
 
   add() {
-    console.log(this.myNewItem);
     this.myShoppingListService.add(this.myNewItem);
+  }
+
+  createDefaultItem() {
+    this.myNewItem = new Object({name: '', disabled: false});
   }
 
 }
