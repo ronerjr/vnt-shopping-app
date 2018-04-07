@@ -12,6 +12,10 @@ import { ShoppingListItemComponent } from './shopping-list/shopping-list-item/sh
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AboutComponent } from './about/about.component';
 import { AuthService } from './auth/auth.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -26,7 +30,10 @@ import { AuthService } from './auth/auth.service';
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(APP_ROUTES),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [ShoppingListService, AuthService],
   bootstrap: [AppComponent]

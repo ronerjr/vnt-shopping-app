@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class ShoppingListService {
@@ -13,12 +14,12 @@ export class ShoppingListService {
   }
 
   add(item) {
+    delete item.key;
     return this.httpClient.post(`${environment.firebase.databaseURL}/items.json`, item);
   }
 
   remove(item) {
-    delete item.key;
-    return this.httpClient.delete(`${environment.firebase.databaseURL}/items/${item.key}.json`, item);
+    return this.httpClient.delete(`${environment.firebase.databaseURL}/items/${item.key}.json`);
   }
 
   edit(item) {
