@@ -8,6 +8,7 @@ import { ShoppingListService } from '../shopping-list.service';
 })
 export class ShoppingListItemComponent implements OnInit {
   @Input('item') item: any;
+  @Output('changed') changed = new EventEmitter();
 
   constructor(private myShoppingListService: ShoppingListService) { }
 
@@ -15,11 +16,16 @@ export class ShoppingListItemComponent implements OnInit {
   }
 
   remove() {
-    this.myShoppingListService.remove(this.item);
+    this.myShoppingListService.remove(this.item).subscribe(res => {
+      this.changed.emit();
+    });
   }
 
   cross() {
-    this.myShoppingListService.cross(this.item);
+    this.item.disabled = true;
+    this.myShoppingListService.cross(this.item).subscribe(res => {
+      this.changed.emit();
+    }
   }
 
 }

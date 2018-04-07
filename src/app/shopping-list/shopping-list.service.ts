@@ -1,32 +1,27 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ShoppingListService {
   listItems: Array<any>;
 
-  constructor() {
-    this.listItems = [
-      {name: 'Bread', disabled: false},
-      {name: 'Coffee', disabled: false},
-      {name: 'Butter', disabled: false},
-      {name: 'Cookies', disabled: true}
-    ];
-  }
+  constructor(private httpClient: HttpClient) { }
 
   findAll() {
-    return this.listItems;
+    return this.httpClient.get(`${environment.firebase.databaseURL}/items.json`);
   }
 
-  add(item){
-    this.listItems.unshift(item);
+  add(item) {
+    return this.httpClient.post(`${environment.firebase.databaseURL}/items.json`, item);
   }
 
   remove(item) {
-    this.listItems.splice(this.listItems.indexOf(item), 1);
+    return this.httpClient.delete(`${environment.firebase.databaseURL}/items/${item.key}.json`, item);
   }
 
   cross(item) {
-    this.listItems[this.listItems.indexOf(item)].disabled = true;
+    return this.httpClient.put(`${environment.firebase.databaseURL}/items/${item.key}.json`, item);
   }
 
 }
