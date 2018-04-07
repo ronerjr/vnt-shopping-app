@@ -1,9 +1,9 @@
 <form>
   <div class="input-group mt-3">
     <input type="text" class="form-control" placeholder="Item name" [(ngModel)]="myNewItem.name" name="itemName">
-    <button type="submit" class="btn btn-primary" (click)="add()" [disabled]="!myNewItem.name" >Add</button>
+    <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="!myNewItem.name" >Add</button>
   </div>
 </form>
 <ul class="list-group mt-3">
-  <app-shopping-list-item [item]="item" *ngFor="let item of listItems" (changed)="itemChanged($event)"></app-shopping-list-item>
+  <app-shopping-list-item [item]="item" *ngFor="let item of listItems" (changed)="itemChanged($event)" (click)="editItem(item)"></app-shopping-list-item>
 </ul>

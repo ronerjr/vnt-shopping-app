@@ -16,14 +16,21 @@ export class ShoppingListComponent implements OnInit {
     this.initialState();
   }
 
-  add() {
-    this.myShoppingListService.add(this.myNewItem).subscribe(res => {
-      this.initialState();
-    });
+  save() {
+    console.log(this.myNewItem);
+    if (this.myNewItem.key) {
+      this.myShoppingListService.edit(this.myNewItem).subscribe(res => {
+        this.initialState();
+      });
+    } else {
+      this.myShoppingListService.add(this.myNewItem).subscribe(res => {
+        this.initialState();
+      });
+    }
   }
 
   createDefaultItem() {
-    this.myNewItem = new Object({name: '', disabled: false});
+    this.myNewItem = new Object({name: '', disabled: false, key: ''});
   }
 
   loadData() {
@@ -32,7 +39,6 @@ export class ShoppingListComponent implements OnInit {
         response[id]['key'] = id;
         return response[id];
       }).reverse();
-      console.log(this.listItems);
     });
   }
 
@@ -43,6 +49,10 @@ export class ShoppingListComponent implements OnInit {
 
   itemChanged(event) {
     this.initialState();
+  }
+
+  editItem(item) {
+    Object.assign(this.myNewItem, item);
   }
 
 }

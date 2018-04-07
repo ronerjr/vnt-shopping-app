@@ -17,10 +17,12 @@ export class ShoppingListService {
   }
 
   remove(item) {
+    delete item.key;
     return this.httpClient.delete(`${environment.firebase.databaseURL}/items/${item.key}.json`, item);
   }
 
-  cross(item) {
+  edit(item) {
+    delete item.key;
     return this.httpClient.put(`${environment.firebase.databaseURL}/items/${item.key}.json`, item);
   }
 

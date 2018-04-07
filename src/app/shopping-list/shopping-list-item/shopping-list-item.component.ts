@@ -23,9 +23,8 @@ export class ShoppingListItemComponent implements OnInit {
 
   cross() {
     this.item.disabled = true;
-    this.myShoppingListService.cross(this.item).subscribe(res => {
+    this.myShoppingListService.edit(this.item).subscribe(res => {
       this.changed.emit();
     });
   }
-
 }
