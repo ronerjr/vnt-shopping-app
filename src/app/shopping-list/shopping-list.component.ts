@@ -18,11 +18,12 @@ export class ShoppingListComponent implements OnInit {
   }
 
   save() {
-    console.log(this.myNewItem);
     if (this.myNewItem.key) {
       this.myShoppingListService.edit(this.myNewItem);
+      this.createDefaultItem();
     } else {
       this.myShoppingListService.add(this.myNewItem);
+      this.createDefaultItem();
     }
   }
 
@@ -30,17 +31,9 @@ export class ShoppingListComponent implements OnInit {
     this.myNewItem = new Object({name: '', disabled: false, key: ''});
   }
 
-  loadData() {
-    this.listItems = this.myShoppingListService.listItemFirebase;
-  }
-
   initialState() {
     this.createDefaultItem();
-    this.loadData();
-  }
-
-  itemChanged(event) {
-    this.initialState();
+    this.listItems = this.myShoppingListService.listItemFirebase;
   }
 
   editItem(item) {

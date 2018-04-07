@@ -1,0 +1,18 @@
+.auth-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logout-components {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}

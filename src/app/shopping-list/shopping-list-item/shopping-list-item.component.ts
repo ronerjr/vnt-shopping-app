@@ -8,7 +8,6 @@ import { ShoppingListService } from '../shopping-list.service';
 })
 export class ShoppingListItemComponent implements OnInit {
   @Input('item') item: any;
-  @Output('changed') changed = new EventEmitter();
 
   constructor(private myShoppingListService: ShoppingListService) { }
 
