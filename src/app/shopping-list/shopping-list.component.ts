@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from './shopping-list.service';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,11 +11,13 @@ import { Observable } from 'rxjs/Observable';
 export class ShoppingListComponent implements OnInit {
   listItems: Observable<any[]>;
   myNewItem: any;
+  user: any;
 
-  constructor(private myShoppingListService: ShoppingListService) { }
+  constructor(private myShoppingListService: ShoppingListService, private authService: AuthService) { }
 
   ngOnInit() {
     this.initialState();
+    this.user = this.authService.getCurrentUser();
   }
 
   save() {
@@ -38,6 +41,10 @@ export class ShoppingListComponent implements OnInit {
 
   editItem(item) {
     Object.assign(this.myNewItem, item);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

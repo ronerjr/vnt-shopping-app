@@ -1,0 +1,25 @@
+i {
+    display: flex;
+    align-self: center;
+}
+
+button {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    width: 15em;
+}
+
+.buttons-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

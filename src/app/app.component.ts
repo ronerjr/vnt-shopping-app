@@ -10,10 +10,6 @@ export class AppComponent {
 
   constructor(private authService: AuthService) { }
 
-  login() {
-    this.authService.login();
-  }
-
   logout() {
     this.authService.logout();
   }

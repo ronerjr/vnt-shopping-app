@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingListItem } from './shopping-list-item/shopping-list-item.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class ShoppingListService {
@@ -12,14 +11,14 @@ export class ShoppingListService {
   listItemFirebase: Observable<ShoppingListItem[]>;
   listItemsRef: AngularFireList<ShoppingListItem[]>;
 
-  constructor(private httpClient: HttpClient, private db: AngularFireDatabase) {
-    this.listItems = new Array();
-    this.listItemsRef = this.db.list('items');
-    this.listItemFirebase = this.listItemsRef.snapshotChanges().map(
-        changes => changes.map(c => new ShoppingListItem({
-             key: c.payload.key,
-             name: c.payload.val()['name'],
-             disabled: c.payload.val()['disabled']})));
+  constructor(private db: AngularFireDatabase, private authService: AuthService) {
+      this.listItems = new Array();
+      this.listItemsRef = this.db.list('items');
+      this.listItemFirebase = this.listItemsRef.snapshotChanges().map(
+          changes => changes.map(c => new ShoppingListItem({
+               key: c.payload.key,
+               name: c.payload.val()['name'],
+               disabled: c.payload.val()['disabled']})));
   }
 
   add(item) {

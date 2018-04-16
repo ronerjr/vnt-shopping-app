@@ -1,7 +1,11 @@
+<p class="auth-header mt-3">Hi {{user.displayName}}!
+  <button class="btn btn-primary" (click)="logout()"><i class="fa fa-sign-out"></i></button>
+</p>
+<app-header></app-header>
 <form>
   <div class="input-group mt-3">
     <input type="text" class="form-control" placeholder="Item name" [(ngModel)]="myNewItem.name" name="itemName">
-    <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="!myNewItem.name" >Add</button>
+    <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="!myNewItem.name"><i class="fa fa-plus"></i></button>
   </div>
 </form>
 <ul class="list-group mt-3">

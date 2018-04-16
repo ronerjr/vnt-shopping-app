@@ -1,18 +1,5 @@
 <div class="container-fluid">
-  <div *ngIf="authService.afAuth.authState | async as user; else showLogin">
-    <p class="auth-header mt-3">Hi {{user.displayName}}!
-      <button class="btn btn-primary" (click)="logout()">Logout</button>
-    </p>
-    <app-header></app-header>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
+  <div class="content">
+    <router-outlet></router-outlet>
   </div>
-
-  <ng-template #showLogin>
-    <div class="logout-components">
-      <p class="center">Please login the application</p>
-      <button class="btn btn-danger" (click)="login()">Login with Google</button>
-    </div>
-  </ng-template>
 </div>
