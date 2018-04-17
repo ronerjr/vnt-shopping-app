@@ -12,13 +12,17 @@ export class ShoppingListService {
   listItemsRef: AngularFireList<ShoppingListItem[]>;
 
   constructor(private db: AngularFireDatabase, private authService: AuthService) {
-      this.listItems = new Array();
-      this.listItemsRef = this.db.list('items');
-      this.listItemFirebase = this.listItemsRef.snapshotChanges().map(
-          changes => changes.map(c => new ShoppingListItem({
-               key: c.payload.key,
-               name: c.payload.val()['name'],
-               disabled: c.payload.val()['disabled']})));
+    this.listItems = new Array();
+  }
+
+  findAll() {
+    this.listItemsRef = this.db.list(`items_${this.authService.getCurrentUser().uid}`);
+    this.listItemFirebase = this.listItemsRef.snapshotChanges().map(
+      changes => changes.map(c => new ShoppingListItem({
+        key: c.payload.key,
+        name: c.payload.val()['name'],
+        disabled: c.payload.val()['disabled']
+      })));
   }
 
   add(item) {

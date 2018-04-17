@@ -17,6 +17,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ShoppingListOptionsComponent } from './shopping-list/shopping-list-options/shopping-list-options.component';
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     ShoppingListComponent,
     ShoppingListItemComponent,
+    ShoppingListOptionsComponent,
     AboutComponent,
     LoginComponent
   ],
@@ -35,9 +39,18 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
-  providers: [ShoppingListService, AuthService],
+  providers: [
+    ShoppingListService,
+    AuthService,
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+  ],
+  entryComponents: [
+    ShoppingListOptionsComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

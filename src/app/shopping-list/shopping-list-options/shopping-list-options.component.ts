@@ -1,0 +1,23 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+@Component({
+  selector: 'app-shopping-list-options',
+  templateUrl: './shopping-list-options.component.html',
+  styleUrls: ['./shopping-list-options.component.css']
+})
+export class ShoppingListOptionsComponent implements OnInit {
+
+  constructor(
+    public dialogRef: MatDialogRef<ShoppingListOptionsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+
+  closeDialog() {
+    this.dialogRef.close('Pizza!');
+  }
+
+  ngOnInit() {
+  }
+
+}

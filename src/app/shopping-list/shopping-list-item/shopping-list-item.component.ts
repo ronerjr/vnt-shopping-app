@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ShoppingListService } from '../shopping-list.service';
+import { ShoppingListOptionsComponent } from '../shopping-list-options/shopping-list-options.component';
 
 @Component({
   selector: 'app-shopping-list-item',
@@ -22,4 +23,5 @@ export class ShoppingListItemComponent implements OnInit {
     this.item.disabled = true;
     this.myShoppingListService.edit(this.item);
   }
+
 }
