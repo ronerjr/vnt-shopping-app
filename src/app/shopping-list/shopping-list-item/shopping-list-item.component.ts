@@ -10,18 +10,9 @@ import { ShoppingListOptionsComponent } from '../shopping-list-options/shopping-
 export class ShoppingListItemComponent implements OnInit {
   @Input('item') item: any;
 
-  constructor(private myShoppingListService: ShoppingListService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  remove() {
-    this.myShoppingListService.remove(this.item);
-  }
-
-  cross() {
-    this.item.disabled = true;
-    this.myShoppingListService.edit(this.item);
   }
 
 }

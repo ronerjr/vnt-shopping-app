@@ -1,4 +1,18 @@
 .action-button {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 2em;
+    align-items: center;
+}
+
+.right {
+    display: flex;
     justify-content: flex-end;
+    align-items: center;
 }

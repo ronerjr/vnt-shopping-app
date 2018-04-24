@@ -21,6 +21,8 @@ export class ShoppingListService {
       changes => changes.map(c => new ShoppingListItem({
         key: c.payload.key,
         name: c.payload.val()['name'],
+        price: c.payload.val()['price'],
+        quantity: c.payload.val()['quantity'],
         disabled: c.payload.val()['disabled']
       })));
   }

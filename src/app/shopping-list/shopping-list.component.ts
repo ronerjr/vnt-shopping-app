@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentRef } from '@angular/core';
 import { ShoppingListService } from './shopping-list.service';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingListOptionsComponent } from './shopping-list-options/shopping-list-options.component';
+import { MatExpansionPanel } from '@angular/material/expansion';
+import { ShoppingListItem } from './shopping-list-item/shopping-list-item.model';
 
 @Component({
   selector: 'app-shopping-list',
@@ -11,6 +13,7 @@ import { ShoppingListOptionsComponent } from './shopping-list-options/shopping-l
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
+  @ViewChild('accordion') accordion: MatExpansionPanel;
   listItems: Observable<any[]>;
   myNewItem: any;
   user: any;
@@ -18,13 +21,18 @@ export class ShoppingListComponent implements OnInit {
   constructor(private myShoppingListService: ShoppingListService, private authService: AuthService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.user = this.authService.getCurrentUser();
     this.initialState();
+    this.user = this.authService.getCurrentUser();
     this.myShoppingListService.findAll();
     this.listItems = this.myShoppingListService.listItemFirebase;
   }
 
+  cancel() {
+    this.createDefaultItem();
+  }
+
   save() {
+    console.log(this.myNewItem);
     if (this.myNewItem.key) {
       this.myShoppingListService.edit(this.myNewItem);
       this.createDefaultItem();
@@ -35,7 +43,8 @@ export class ShoppingListComponent implements OnInit {
   }
 
   createDefaultItem() {
-    this.myNewItem = new Object({name: '', disabled: false, key: ''});
+    this.myNewItem = new ShoppingListItem({ name: '', quantity: 0, price: 0.00, disabled: false, key: '' });
+    this.accordion.close();
   }
 
   initialState() {
@@ -54,9 +63,7 @@ export class ShoppingListComponent implements OnInit {
   openDialog(item) {
     console.log(item);
     const dialogRef = this.dialog.open(ShoppingListOptionsComponent, {
-      data: {
-        animal: 'panda'
-      }
+      disableClose: true, data: item, width: '80%'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ShoppingListOptionsComponent } from './shopping-list/shopping-list-options/shopping-list-options.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { ShoppingListOptionsComponent } from './shopping-list/shopping-list-opti
     ShoppingListItemComponent,
     ShoppingListOptionsComponent,
     AboutComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -41,12 +44,12 @@ import { ShoppingListOptionsComponent } from './shopping-list/shopping-list-opti
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
   providers: [
     ShoppingListService,
-    AuthService,
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+    AuthService
   ],
   entryComponents: [
     ShoppingListOptionsComponent,
