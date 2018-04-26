@@ -1,14 +1,9 @@
 import { Routes } from '@angular/router';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { AboutComponent } from './about/about.component';
 import { AuthService } from './auth/auth.service';
 import { LoginComponent } from './login/login.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 export const APP_ROUTES: Routes = [
-    { path: 'about', component: AboutComponent, canActivate: [AuthService] },
-    { path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthService] },
+    { path: 'shopping', loadChildren: './shopping/shopping.module#ShoppingModule'},
     { path: 'login', component: LoginComponent },
-    { path: '', redirectTo: '/shopping-list', pathMatch: 'full' },
-    { path: '**', component: NotFoundComponent }
+    { path: '', redirectTo: 'shopping', pathMatch: 'full' },
 ];

@@ -8,6 +8,7 @@ import { ShoppingListService } from '../shopping-list.service';
   styleUrls: ['./shopping-list-options.component.css']
 })
 export class ShoppingListOptionsComponent implements OnInit {
+  formVisible = false;
 
   constructor(
     private myShoppingListService: ShoppingListService,
@@ -28,6 +29,15 @@ export class ShoppingListOptionsComponent implements OnInit {
     this.data.disabled = true;
     this.myShoppingListService.edit(this.data);
     this.dialogRef.close();
+  }
+
+  edit(event) {
+    this.myShoppingListService.edit(this.data);
+    this.dialogRef.close();
+  }
+
+  onEditClick() {
+    this.formVisible = !this.formVisible;
   }
 
 }

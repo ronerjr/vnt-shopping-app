@@ -1,0 +1,9 @@
+button:disabled {
+  cursor: not-allowed;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1em;
+}

@@ -1,0 +1,23 @@
+.auth-header {
+  display: flex;
+  padding: 1em 0;
+}
+
+.auth-header>.left {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.auth-header>.right {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-weight: bold;
+}

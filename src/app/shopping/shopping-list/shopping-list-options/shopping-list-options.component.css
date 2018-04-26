@@ -7,12 +7,6 @@
 .options {
     display: flex;
     justify-content: space-around;
-    padding-top: 2em;
-    align-items: center;
-}
-
-.right {
-    display: flex;
-    justify-content: flex-end;
+    padding: 2em 0;
     align-items: center;
 }

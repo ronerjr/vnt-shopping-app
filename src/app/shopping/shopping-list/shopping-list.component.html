@@ -1,0 +1,13 @@
+<h1>Shopping List</h1>
+<mat-accordion>
+  <mat-expansion-panel #accordion>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Add item
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-shopping-form [item]="item" (onSave)="save($event)" (onCancel)="cancel($event)"></app-shopping-form>
+  </mat-expansion-panel>
+  <ul class="list-group mt-3">
+    <app-shopping-list-item [item]="item" *ngFor="let item of listItems | async" (click)="openDialog(item)"></app-shopping-list-item>
+  </ul>
