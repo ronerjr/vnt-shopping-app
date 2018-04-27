@@ -10,10 +10,11 @@ export const SHOPPING_ROUTES: Routes = [
         path: 'shopping',
         component: ShoppingComponent,
         children: [
-            { path: 'about', component: AboutComponent, canActivate: [AuthService] },
-            { path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthService] },
+            { path: 'about', component: AboutComponent },
+            { path: 'shopping-list', component: ShoppingListComponent },
             { path: '', redirectTo: 'shopping-list', pathMatch: 'full' },
             { path: '**', component: NotFoundComponent }
-        ]
+        ],
+        canActivate: [AuthService]
     }
 ];

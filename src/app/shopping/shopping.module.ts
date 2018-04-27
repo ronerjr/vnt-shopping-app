@@ -38,6 +38,9 @@ import { MatMenuModule } from '@angular/material/menu';
     AboutComponent,
     NotFoundComponent,
   ],
+  exports: [
+    ShoppingComponent
+  ],
   providers: [
     ShoppingListService
   ],
