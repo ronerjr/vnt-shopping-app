@@ -1,0 +1,13 @@
+.display-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+p {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-weight: bold;
+  }

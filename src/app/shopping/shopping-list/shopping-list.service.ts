@@ -7,9 +7,9 @@ import { AuthService } from '../../auth/auth.service';
 @Injectable()
 export class ShoppingListService {
   listItems: Array<ShoppingListItem[]>;
-
   listItemFirebase: Observable<ShoppingListItem[]>;
   listItemsRef: AngularFireList<ShoppingListItem[]>;
+  totalValue = 0;
 
   constructor(private db: AngularFireDatabase, private authService: AuthService) {
     this.listItems = new Array();
@@ -25,7 +25,7 @@ export class ShoppingListService {
         quantity: c.payload.val()['quantity'],
         disabled: c.payload.val()['disabled']
       })));
-  }
+    }
 
   add(item) {
     delete item.key;

@@ -25,7 +25,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   createDefaultItem() {
-    this.item = new ShoppingListItem({ name: '', quantity: 0, price: 0.00, disabled: false, key: '' });
+    this.item = new ShoppingListItem({});
     this.accordion.close();
   }
 

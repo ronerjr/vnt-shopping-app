@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ShoppingComponent } from './shopping.component';
-import { HeaderComponent } from './header/header.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingListItemComponent } from './shopping-list/shopping-list-item/shopping-list-item.component';
 import { ShoppingListOptionsComponent } from './shopping-list/shopping-list-options/shopping-list-options.component';
@@ -16,6 +15,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ShoppingFormComponent } from './shopping-form/shopping-form.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { FooterComponent } from './footer/footer.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 
 @NgModule({
@@ -26,17 +28,18 @@ import { MatMenuModule } from '@angular/material/menu';
     BrowserAnimationsModule,
     MatDialogModule,
     MatExpansionModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   declarations: [
     ShoppingComponent,
-    HeaderComponent,
     ShoppingListComponent,
     ShoppingListItemComponent,
     ShoppingListOptionsComponent,
     ShoppingFormComponent,
     AboutComponent,
     NotFoundComponent,
+    FooterComponent,
   ],
   exports: [
     ShoppingComponent

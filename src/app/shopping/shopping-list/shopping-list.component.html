@@ -8,6 +8,7 @@
     </mat-expansion-panel-header>
     <app-shopping-form [item]="item" (onSave)="save($event)" (onCancel)="cancel($event)"></app-shopping-form>
   </mat-expansion-panel>
-  <ul class="list-group mt-3">
+  <ul class="list-group mt-3 partial-height">
     <app-shopping-list-item [item]="item" *ngFor="let item of listItems | async" (click)="openDialog(item)"></app-shopping-list-item>
   </ul>
+  <app-footer class="footer"></app-footer>

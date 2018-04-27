@@ -1,12 +1,12 @@
 .action-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .options {
-    display: flex;
-    justify-content: space-around;
-    padding: 2em 0;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 2em 0;
+  align-items: center;
 }

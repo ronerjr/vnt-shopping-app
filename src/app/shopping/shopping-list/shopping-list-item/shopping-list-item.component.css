@@ -6,3 +6,7 @@
 .list-group-item {
     border-color: darkcyan;
 }
+
+li.disabled {
+    color: green;
+}
