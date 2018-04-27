@@ -5,4 +5,12 @@
 
 export const environment = {
   production: false,
+  firebase: {
+    apiKey: 'AIzaSyB6_BP1b79Zmlob55Zb323qtPKaZJkfM0Q',
+    authDomain: 'vntroju-shopping-cart-1.firebaseapp.com',
+    databaseURL: 'https://vntroju-shopping-cart-1.firebaseio.com',
+    projectId: 'vntroju-shopping-cart-1',
+    storageBucket: 'vntroju-shopping-cart-1.appspot.com',
+    messagingSenderId: '676841141317'
+  }
 };
